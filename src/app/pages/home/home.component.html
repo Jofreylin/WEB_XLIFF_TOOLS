@@ -1,7 +1,22 @@
-<div class="flex flex-col items-center justify-center min-h-screen bg-white p-4">
-    <input type="file" (change)="onFileChange($event)" accept=".xlf,.xliff,.xml"
-        class="mb-4 p-2 border border-gray-300 rounded" />
-    <button (click)="onBuildClick()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
-        Translate
-    </button>
+<div class="flex flex-col items-center justify-center mt-52 p-4">
+    <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+        <h2 class="text-2xl font-semibold mb-2">Upload a File</h2>
+        <p class="text-gray-600 mb-4">Choose a file to upload to our secure server.</p>
+        <div class="flex items-center">
+            <label for="file-upload"
+                class="cursor-pointer inline-flex items-center px-4 py-2 bg-black text-white rounded-lg shadow-sm hover:bg-gray-800">
+                <i class="fa fa-upload mr-2"></i>
+                Choose File
+                <input id="file-upload" type="file" class="hidden" (change)="onFileChange($event)">
+
+            </label>
+        </div>
+
+
+    </div>
+    <button *ngIf="displayContent" class="px-4 py-2 mb-3 mt-3 bg-blue-500 text-white rounded-lg shadow-sm hover:bg-blue-700"
+        (click)="onBuildClick()">Translate</button>
+    <div *ngIf="displayContent" class="bg-gray-800 text-white p-4 rounded-lg w-full mb-4">
+        <pre class="whitespace-pre-wrap">{{ displayContent }}</pre>
+    </div>
 </div>

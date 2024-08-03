@@ -14,6 +14,16 @@
   }
 }
 
+@layer components {
+    .active-link {
+      @apply bg-black dark:bg-white text-white m-0  dark:text-black border-black;
+    }
+
+    .navbar-link:not(.active-link){
+        @apply  bg-white text-black border border-black dark:bg-black dark:text-white dark:border-white;
+    }
+}
+
 html,
 body {
     margin: 0;

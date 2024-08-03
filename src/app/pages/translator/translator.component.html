@@ -19,9 +19,13 @@
         (click)="onBuildClick()">Translate</button>
         </div>
     </div>
-    <div class="flex flex-wrap justify-center items-center mt-12">
+    <div class="flex flex-wrap justify-center items-center mt-8">
         <div>
-            <label class="font-bold text-black dark:text-white">Source</label>
+            <label for="source-select" class="block font-bold text-black dark:text-white mb-2 ms-3">Source</label>
+            <select id="source-select" [(ngModel)]="sourceLangSelected" class="mb-3 ms-2 border border-gray-300 rounded-2xl py-2 px-2">
+                <option [value]="null" selected disabled>Select Language</option>
+                <option [value]="lang.code" *ngFor="let lang of supportedLanguages">{{lang.name}}</option>
+            </select>
             <app-xml-viewer [fileContent]="fileContent"></app-xml-viewer>
         </div>
         <div class="mt-1 mb-1 me-1 ms-1 flex text-black dark:text-white  ">
@@ -30,7 +34,18 @@
             <i class="fa-solid fa-arrow-right-long me-2"></i>
         </div>
         <div>
-            <label class="font-bold text-black dark:text-white">Target</label>
+            <label for="source-select" class="block font-bold text-black dark:text-white mb-2 ms-3">Target</label>
+            
+            <div class="flex flex-wrap items-center justify-between">
+                <select id="source-select" [(ngModel)]="targetLangSelected" class="mb-3 ms-2 border border-gray-300 rounded-2xl py-2 px-2 me-6">
+                    <option [value]="null" selected disabled>Select Language</option>
+                    <option [value]="lang.code" *ngFor="let lang of supportedLanguages">{{lang.name}}</option>
+                </select>
+                <div class="flex items-center ">
+                    <input [(ngModel)]="options.removeTargetContentBefore" id="checkbox-1" type="checkbox" value="" class="w-4 h-4" >
+                    <label for="checkbox-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remove existing target element</label>
+                </div>
+            </div>
             <app-xml-viewer [fileContent]="modifiedContent"></app-xml-viewer>
         </div>
     </div>

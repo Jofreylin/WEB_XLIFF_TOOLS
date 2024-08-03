@@ -5,7 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { XmlViewerComponent } from './xml-viewer/xml-viewer.component';
 import { RightRowComponent } from './right-row/right-row.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ToggleThemeBtnComponent } from './toggle-theme-btn/toggle-theme-btn.component';
 
 
@@ -20,7 +20,8 @@ import { ToggleThemeBtnComponent } from './toggle-theme-btn/toggle-theme-btn.com
   ],
   imports: [
     CommonModule,
-    RouterLink
+    RouterLink,
+    RouterLinkActive
   ],
   exports: [
     NavbarComponent,

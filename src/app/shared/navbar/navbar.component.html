@@ -15,11 +15,15 @@
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul
                 class="font-medium flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 ">
-                <li class="me-3">
-                    <a routerLink="/about"
-                        class="block  px-4 py-1 rounded-2xl bg-black dark:bg-white text-white m-0  dark:text-black font-bold">About</a>
+                <li >
+                    <a routerLink="/translator" routerLinkActive="active-link"
+                        class="block  px-4 py-1 rounded-2xl  navbar-link font-bold">Translator</a>
                 </li>
-                <li class="me-3">
+                <li >
+                    <a routerLink="/disclaimer" routerLinkActive="active-link"
+                        class="block  px-4 py-1 rounded-2xl navbar-link font-bold">Disclaimer</a>
+                </li>
+                <li >
                     <app-toggle-theme-btn></app-toggle-theme-btn>
                 </li>
             </ul>

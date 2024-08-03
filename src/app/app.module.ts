@@ -13,6 +13,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { CommonLayoutComponent } from './layouts/common-layout/common-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { TranslatorComponent } from './pages/translator/translator.component';
+import { AboutComponent } from './pages/about/about.component';
+import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
 
 registerLocaleData(localeEn, 'en-US');
 
@@ -21,7 +23,9 @@ registerLocaleData(localeEn, 'en-US');
     AppComponent,
     HomeComponent,
     CommonLayoutComponent,
-    TranslatorComponent
+    TranslatorComponent,
+    AboutComponent,
+    DisclaimerComponent
   ],
   imports: [
     BrowserModule,

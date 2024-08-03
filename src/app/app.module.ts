@@ -12,6 +12,7 @@ import localeEn from '@angular/common/locales/en';
 import { HomeComponent } from './pages/home/home.component';
 import { CommonLayoutComponent } from './layouts/common-layout/common-layout.component';
 import { SharedModule } from './shared/shared.module';
+import { TranslatorComponent } from './pages/translator/translator.component';
 
 registerLocaleData(localeEn, 'en-US');
 
@@ -19,7 +20,8 @@ registerLocaleData(localeEn, 'en-US');
   declarations: [
     AppComponent,
     HomeComponent,
-    CommonLayoutComponent
+    CommonLayoutComponent,
+    TranslatorComponent
   ],
   imports: [
     BrowserModule,

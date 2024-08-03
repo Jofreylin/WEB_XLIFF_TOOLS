@@ -2,20 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { CommonLayoutComponent } from './layouts/common-layout/common-layout.component';
+import { TranslatorComponent } from './pages/translator/translator.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: HomeComponent
   },
   {
     path: '',
     component: CommonLayoutComponent,
     children: [
       {
-        path: 'home',
-        component: HomeComponent
+        path: 'translator',
+        component: TranslatorComponent
       }
     ]
   }

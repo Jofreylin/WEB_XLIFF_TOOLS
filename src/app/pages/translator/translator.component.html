@@ -1,0 +1,44 @@
+<div class="flex flex-col items-center justify-center">
+    <div class="bg-white rounded-2xl border p-6 max-w-md w-full">
+        <h2 class="text-2xl font-semibold mb-2">Upload a File</h2>
+        <p class="text-gray-600 mb-4">Choose a file to upload to our secure server.</p>
+        <div class="flex items-center">
+            <label for="file-upload" *ngIf="!fileContent"
+                class="cursor-pointer inline-flex items-center px-4 py-2 bg-black text-white rounded-lg shadow-sm hover:bg-gray-800">
+                <i class="fa fa-upload mr-2"></i>
+                Choose File
+                <input id="file-upload" type="file" class="hidden" (change)="onFileChange($event)">
+            </label>
+            <button  *ngIf="fileContent" (click)="clearInput()"
+            class="px-4 py-2 me-3 bg-black  text-white  rounded-lg shadow-sm  hover:bg-gray-800">
+                <i class="fas fa-trash"></i>
+                Clear Input
+            </button>
+            <button *ngIf="fileContent"
+        class="px-4 py-2  bg-black  text-white rounded-lg shadow-sm hover:bg-gray-800"
+        (click)="onBuildClick()">Translate</button>
+        </div>
+    </div>
+    <div class="flex flex-wrap justify-center items-center mt-12">
+        <div>
+            <label class="font-bold text-black dark:text-white">Source</label>
+            <app-xml-viewer [fileContent]="fileContent"></app-xml-viewer>
+        </div>
+        <div class="mt-1 mb-1 me-1 ms-1 flex text-black dark:text-white  ">
+            <i class="fa-solid fa-arrow-right-long ms-2 me-2"></i>
+            <i class="fa-solid fa-arrow-right-long me-2 text-gray-400 dark:text-gray-300"></i>
+            <i class="fa-solid fa-arrow-right-long me-2"></i>
+        </div>
+        <div>
+            <label class="font-bold text-black dark:text-white">Target</label>
+            <app-xml-viewer [fileContent]="modifiedContent"></app-xml-viewer>
+        </div>
+    </div>
+</div>
+
+<div class="container flex justify-end text-end">
+    <button *ngIf="modifiedContent"
+        class="px-4 py-2  bg-black text-white dark:bg-white  dark:text-black rounded-lg shadow-sm hover:bg-gray-800 fixed"
+        (click)="downloadFile()">Download Translation</button>
+      
+</div>

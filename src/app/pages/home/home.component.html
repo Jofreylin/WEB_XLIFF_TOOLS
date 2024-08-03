@@ -1,22 +1,20 @@
-<div class="flex flex-col items-center justify-center mt-52 p-4">
-    <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-        <h2 class="text-2xl font-semibold mb-2">Upload a File</h2>
-        <p class="text-gray-600 mb-4">Choose a file to upload to our secure server.</p>
-        <div class="flex items-center">
-            <label for="file-upload"
-                class="cursor-pointer inline-flex items-center px-4 py-2 bg-black text-white rounded-lg shadow-sm hover:bg-gray-800">
-                <i class="fa fa-upload mr-2"></i>
-                Choose File
-                <input id="file-upload" type="file" class="hidden" (change)="onFileChange($event)">
-
-            </label>
-        </div>
-
-
-    </div>
-    <button *ngIf="displayContent" class="px-4 py-2 mb-3 mt-3 bg-blue-500 text-white rounded-lg shadow-sm hover:bg-blue-700"
-        (click)="onBuildClick()">Translate</button>
-    <div *ngIf="displayContent" class="bg-gray-800 text-white p-4 rounded-lg w-full mb-4">
-        <pre class="whitespace-pre-wrap">{{ displayContent }}</pre>
-    </div>
+<div class="flex flex-col items-center justify-center min-h-screen p-4 space-y-8 bg-white dark:bg-black w-full overflow-hiddens">
+    
+    <nav class="flex justify-end mb-0">
+        <app-toggle-theme-btn></app-toggle-theme-btn>
+    </nav>
+    <main class="flex flex-col items-center space-y-4 ">
+        <h1 class="text-4xl font-bold text-center text-black dark:text-white">XML Translator</h1>
+        <p class="text-center text-muted-foreground text-black dark:text-white">Translate XLF and XLIFF files for your apps'
+            internalization.</p>
+        <a routerLink="/translator"
+            class="flex items-center p-4 space-x-2 bg-black dark:bg-white rounded-2xl text-white dark:text-black">
+            <span class="k">Go to Translator</span>
+            <i class="fa-solid fa-arrow-right-long "></i>
+        </a>
+    </main>
+    <footer class="flex items-center justify-center w-full px-4 py-4">
+        <a class="text-xs text-black dark:text-white" href="https://byjofrey.com" target="_blank"><i
+                class="fa-solid fa-globe me-1 fa-lg"></i> By Jofrey</a>
+    </footer>
 </div>

@@ -1,4 +1,4 @@
-# XML Translator
+# XLF XLIFF Translator
 
 ## Description
 XML Translator is a web application designed to simplify the translation process of XLF and XLIFF files, which are commonly used for app internalization.

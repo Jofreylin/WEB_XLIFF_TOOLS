@@ -9,6 +9,7 @@ export class XmlViewerComponent implements OnChanges {
   
   
   @Input() fileContent: string | ArrayBuffer | null = null;
+  @Input() height: string = '380px';
 
   displayContent: string | null = null;
 

@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { TranslatorComponent } from './pages/translator/translator.component';
 import { AboutComponent } from './pages/about/about.component';
 import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
+import { UnifierComponent } from './pages/unifier/unifier.component';
 
 registerLocaleData(localeEn, 'en-US');
 
@@ -25,7 +26,8 @@ registerLocaleData(localeEn, 'en-US');
     CommonLayoutComponent,
     TranslatorComponent,
     AboutComponent,
-    DisclaimerComponent
+    DisclaimerComponent,
+    UnifierComponent
   ],
   imports: [
     BrowserModule,

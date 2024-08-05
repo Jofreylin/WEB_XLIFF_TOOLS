@@ -1,0 +1,52 @@
+<div class="flex flex-col items-center justify-center">
+    <div class="bg-white dark:bg-black rounded-2xl border dark:border-transparent p-6 max-w-lg w-full">
+        <h2 class="text-2xl font-semibold mb-2 text-black dark:text-white">Upload a File</h2>
+        <p class="text-gray-600  dark:text-white mb-4">Choose the XLF or XLIFF you want to unify.</p>
+        <div class="flex items-center">
+            <label for="file-upload1" *ngIf="!xmlInput1 || !xmlInput2"
+                class="cursor-pointer me-3 inline-flex items-center px-4 py-2  bg-black text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">
+                <i class="fa fa-upload mr-2"></i>
+                Choose Source File
+                <input id="file-upload1" type="file" class="hidden" (change)="onFileChange($event,1)">
+            </label>
+            <label for="file-upload2" *ngIf="!xmlInput2 || !xmlInput1"
+                class="cursor-pointer inline-flex items-center px-4 py-2  bg-black text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">
+                <i class="fa fa-upload mr-2"></i>
+                Choose Target File
+                <input id="file-upload2" type="file" class="hidden" (change)="onFileChange($event,2)">
+            </label>
+            <button *ngIf="xmlInput1 && xmlInput2" (click)="clearInput()"
+                class="px-4 py-2 me-3 bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm  hover:bg-gray-800 dark:hover:bg-gray-200">
+                <i class="fas fa-trash"></i>
+                Clear Inputs
+            </button>
+            <button *ngIf="xmlInput1 && xmlInput2" (click)="doJob()"
+                class="px-4 py-2  bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">Unify</button>
+        </div>
+    </div>
+    <div class="flex flex-wrap justify-center items-center mt-8">
+        <div>
+            <label for="source-select" class="block font-bold text-black dark:text-white mb-2 ms-3">Source</label>
+            <app-xml-viewer [fileContent]="xmlInput1"></app-xml-viewer>
+
+            <label for="source-select" class="block font-bold text-black dark:text-white mb-2 ms-3">Target</label>
+            <app-xml-viewer [fileContent]="xmlInput2"></app-xml-viewer>
+        </div>
+        <div class="mt-1 mb-1 me-1 ms-1 flex text-black dark:text-white  ">
+            <i class="fa-solid fa-arrow-right-long ms-2 me-2"></i>
+            <i class="fa-solid fa-arrow-right-long me-2 text-gray-400 dark:text-gray-300"></i>
+            <i class="fa-solid fa-arrow-right-long me-2"></i>
+        </div>
+        <div>
+            <label for="source-select" class="block font-bold text-black dark:text-white mb-2 ms-3">Unification</label>
+            <app-xml-viewer [fileContent]="xmlOutput" [height]="'760px'"></app-xml-viewer>
+        </div>
+    </div>
+</div>
+
+<div class="container flex justify-end text-end">
+    <button *ngIf="xmlOutput"
+        class="px-4 py-2  bg-black text-white dark:bg-white  dark:text-black rounded-lg shadow-sm hover:bg-gray-800 fixed"
+        (click)="downloadFile()">Download Unification File</button>
+
+</div>

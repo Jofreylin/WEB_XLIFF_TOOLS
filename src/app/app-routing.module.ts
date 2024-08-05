@@ -5,6 +5,7 @@ import { CommonLayoutComponent } from './layouts/common-layout/common-layout.com
 import { TranslatorComponent } from './pages/translator/translator.component';
 import { AboutComponent } from './pages/about/about.component';
 import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
+import { UnifierComponent } from './pages/unifier/unifier.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'translator',
         component: TranslatorComponent
+      },
+      {
+        path: 'unifier',
+        component: UnifierComponent
       },
       {
         path: 'about',

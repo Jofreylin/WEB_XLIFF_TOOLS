@@ -1,0 +1,21 @@
+<div class="container">
+    <div class=" p-20 text-black dark:text-white" >
+        <h1 class="text-4xl font-bold  mb-3">Help Center</h1>
+        <p >This web application is designed to translate XLF and XLIFF files with XML structures using third-party libraries. </p>
+        <p class="mt-2 font-bold ">Click on the option that interests you the most, to learn more:</p>
+        <div class="flex flex-wrap p4 mt-10">
+            <div class="bg-white dark:bg-black rounded-2xl border dark:border-white p-6 max-w-md w-full" *ngFor="let item of routes">
+                <h2 class="text-2xl font-semibold mb-2 text-black dark:text-white">{{item.title}}</h2>
+                <p class="text-gray-600  dark:text-white mb-4">{{item.description}}</p>
+                <div class="flex items-end justify-end">
+                    <a 
+                    class="px-4 py-2  bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200" [routerLink]="item.path">
+                    <i class="fa-solid fa-hand-pointer me-2"></i>Show me more</a>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+      
+</div>

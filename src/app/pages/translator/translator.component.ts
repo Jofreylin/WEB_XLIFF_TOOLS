@@ -144,7 +144,7 @@ export class TranslatorComponent implements OnInit{
 
     const data: string = this.modifiedContent as string;
     const fileExtension = 'xlf';
-    const filename = `translated.${fileExtension}`
+    const filename = `translated.${this.targetLangSelected}.${fileExtension}`
 
     this.spinner.show();
 

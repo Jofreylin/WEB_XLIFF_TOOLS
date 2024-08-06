@@ -6,6 +6,8 @@ import { TranslatorComponent } from './pages/translator/translator.component';
 import { AboutComponent } from './pages/about/about.component';
 import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
 import { UnifierComponent } from './pages/unifier/unifier.component';
+import { HelpComponent } from './pages/help/help.component';
+import { HelpUnifierComponent } from './pages/help/help-unifier/help-unifier.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,19 @@ const routes: Routes = [
       {
         path: 'disclaimer',
         component: DisclaimerComponent
+      },
+      {
+        path: 'help',
+        children: [
+          {
+            path: '',
+            component: HelpComponent
+          },
+          {
+            path: 'unifier',
+            component: HelpUnifierComponent
+          }
+        ]
       }
     ]
   }

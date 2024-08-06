@@ -1,0 +1,16 @@
+<div class="container">
+    <div class=" p-20 text-black dark:text-white" >
+        <h1 class="text-3xl font-semibold mb-4 ">Unify XLF - XLIFF</h1>
+        <h3 class="text-lg font-semibold mb-2 ">How does it works?</h3>
+        <p>
+            This functionality allows you to upload and process two XLIFF files. The first file, referred to as the "Source File", should contain both 
+            <code>&lt;source&gt;</code> and <code>&lt;target&gt;</code> elements, while the second file, referred to as the "Target File", should contain 
+            <code>&lt;source&gt;</code> elements but potentially empty <code>&lt;target&gt;</code> elements. The script reads both files and compares the 
+            <code>&lt;source&gt;</code> elements as complete objects. If a match is found between the <code>&lt;source&gt;</code> elements of the Source File and the Target File, the 
+            corresponding <code>&lt;target&gt;</code> element from the Source File is copied into the Target File. This process ensures that the translations (targets) are 
+            transferred accurately from one file to another based on the matching sources. The resulting content of the Target File, with the updated 
+            <code>&lt;target&gt;</code> elements, is displayed for review. Additionally, there are options to clear the input fields and process the files again if needed.
+          </p>
+          
+    </div>
+</div>

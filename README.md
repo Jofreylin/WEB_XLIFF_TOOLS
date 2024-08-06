@@ -5,6 +5,8 @@ XLIFF Tools is a web application designed to simplify the translation process of
 
 This application serves as an example of how to implement external services to translate internalization files. It uses third-party libraries to handle the reading and translation of XML files.
 
+Live app: https://web-xliff-tools.vercel.app/ 
+
 ## Technologies Used
 - **Angular 18.0.4**: A platform and framework for building single-page client applications using HTML and TypeScript.
 - **Tailwind CSS 3.4.7**: A utility-first CSS framework for rapidly building custom user interfaces.

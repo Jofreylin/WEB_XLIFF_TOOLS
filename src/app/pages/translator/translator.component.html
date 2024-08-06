@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center justify-center">
-    <div class="bg-white dark:bg-black rounded-2xl border dark:border-transparent p-6 max-w-md w-full">
+    <div class="bg-white dark:bg-black rounded-2xl border dark:border-transparent p-6 max-w-lg w-full">
         <h2 class="text-2xl font-semibold mb-2 text-black dark:text-white">Upload a File</h2>
-        <p class="text-gray-600  dark:text-white mb-4">Choose a file to upload to our secure server.</p>
+        <p class="text-gray-600  dark:text-white mb-4">Choose a XLF or XLIFF file you want me to translate.</p>
         <div class="flex items-center">
             <label for="file-upload" *ngIf="!fileContent"
                 class="cursor-pointer inline-flex items-center px-4 py-2  bg-black text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">
@@ -9,20 +9,24 @@
                 Choose File
                 <input id="file-upload" type="file" class="hidden" (change)="onFileChange($event)">
             </label>
-            <button  *ngIf="fileContent" (click)="clearInput()"
-            class="px-4 py-2 me-3 bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm  hover:bg-gray-800 dark:hover:bg-gray-200">
+            <button *ngIf="fileContent" (click)="clearInput()"
+                class="px-4 py-2 me-3 bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm  hover:bg-gray-800 dark:hover:bg-gray-200">
                 <i class="fas fa-trash"></i>
                 Clear Input
             </button>
-            <button *ngIf="fileContent"
-        class="px-4 py-2  bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200"
-        (click)="onBuildClick()">Translate</button>
+            <button *ngIf="fileContent && !modifiedContent"
+                class="px-4 py-2  bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200"
+                (click)="onBuildClick()">Translate</button>
+            <button *ngIf="modifiedContent"
+                class="px-4 py-2  bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200"
+                (click)="downloadFile()">Download Translation</button>
         </div>
     </div>
     <div class="flex flex-wrap justify-center items-center mt-8">
         <div>
             <label for="source-select" class="block font-bold text-black dark:text-white mb-2 ms-3">Source</label>
-            <select id="source-select" [(ngModel)]="sourceLangSelected" class="mb-3 ms-2 border border-gray-300 rounded-2xl py-2 px-2">
+            <select id="source-select" [(ngModel)]="sourceLangSelected"
+                class="mb-3 ms-2 border border-gray-300 rounded-2xl py-2 px-2">
                 <option [value]="null" selected disabled>Select Language</option>
                 <option [value]="lang.code" *ngFor="let lang of supportedLanguages">{{lang.name}}</option>
             </select>
@@ -35,25 +39,21 @@
         </div>
         <div>
             <label for="source-select" class="block font-bold text-black dark:text-white mb-2 ms-3">Target</label>
-            
+
             <div class="flex flex-wrap items-center justify-between">
-                <select id="source-select" [(ngModel)]="targetLangSelected" class="mb-3 ms-2 border border-gray-300 rounded-2xl py-2 px-2 me-6">
+                <select id="source-select" [(ngModel)]="targetLangSelected"
+                    class="mb-3 ms-2 border border-gray-300 rounded-2xl py-2 px-2 me-6">
                     <option [value]="null" selected disabled>Select Language</option>
                     <option [value]="lang.code" *ngFor="let lang of supportedLanguages">{{lang.name}}</option>
                 </select>
                 <div class="flex items-center ">
-                    <input [(ngModel)]="options.removeTargetContentBefore" id="checkbox-1" type="checkbox" value="" class="w-4 h-4" >
-                    <label for="checkbox-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remove existing target element</label>
+                    <input [(ngModel)]="options.removeTargetContentBefore" id="checkbox-1" type="checkbox" value=""
+                        class="w-4 h-4">
+                    <label for="checkbox-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remove
+                        existing target element</label>
                 </div>
             </div>
             <app-xml-viewer [fileContent]="modifiedContent"></app-xml-viewer>
         </div>
     </div>
-</div>
-
-<div class="container flex justify-end text-end">
-    <button *ngIf="modifiedContent"
-        class="px-4 py-2  bg-black text-white dark:bg-white  dark:text-black rounded-lg shadow-sm hover:bg-gray-800 fixed"
-        (click)="downloadFile()">Download Translation</button>
-      
 </div>

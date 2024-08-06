@@ -4,7 +4,6 @@ pre {
     white-space: -pre-wrap; /* Opera 4-6 */
     white-space: -o-pre-wrap; /* Opera 7 */
     word-wrap: break-word; /* IE */
-    height: 380px;
     width: 35rem;
     overflow-y: auto; /* Agrega scroll vertical */
   }

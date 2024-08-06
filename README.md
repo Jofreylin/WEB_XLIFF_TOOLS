@@ -1,7 +1,7 @@
-# XLF XLIFF Translator
+# XLF XLIFF TOOLS
 
 ## Description
-XML Translator is a web application designed to simplify the translation process of XLF and XLIFF files, which are commonly used for app internalization.
+XLIFF Tools is a web application designed to simplify the translation process of XLF and XLIFF files, which are commonly used for app internalization.
 
 This application serves as an example of how to implement external services to translate internalization files. It uses third-party libraries to handle the reading and translation of XML files.
 

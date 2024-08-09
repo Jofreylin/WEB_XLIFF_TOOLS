@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as xmljs from 'xml-js';
 import { create } from 'xmlbuilder2';
 
 @Component({
@@ -14,27 +13,6 @@ export class UnifierComponent {
   xmlOutput: string | ArrayBuffer | null = null;
 
   constructor() {
-
-
-    const xmlString1 = `
-    <?xml version="1.0" encoding="UTF-8" ?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" datatype="plaintext" original="ng2.template">
-    <body>
-      <trans-unit id="1060999950293472159" datatype="html">
-      <source>Holding Years <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-danger&quot;&gt;"/>*<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/calculator/calculator.component.html</context>
-          <context context-type="linenumber">24,25</context>
-        </context-group>
-          </trans-unit>
-    </body>
-  </file>
-</xliff>
-    `;
-
-
-
   }
 
   onFileChange(event: any, fileType: number) {
@@ -63,27 +41,6 @@ export class UnifierComponent {
 
   doJob() {
     this.xmlOutput = this.copyTargetFromOtherFile(this.xmlInput1 as string, this.xmlInput2 as string);
-  }
-
-  private copySourceToTarget(xmlString: string): string {
-    const options = { compact: true, spaces: 2 };
-    const parsedXml = xmljs.xml2js(xmlString, options) as any;
-    const transUnits = parsedXml.xliff.file.body['trans-unit'];
-
-    for (const transUnit of transUnits) {
-      const source = transUnit.source;
-      let target = transUnit.target;
-
-      if (source) {
-        if (!target) {
-          transUnit.target = source;
-        }
-
-      }
-    }
-
-    const newXmlString = xmljs.js2xml(parsedXml, options);
-    return newXmlString;
   }
 
   private copyTargetFromOtherFile(xmlString1: string, xmlString2: string): string {
@@ -137,7 +94,7 @@ export class UnifierComponent {
     }
 
     // Step 3: Convert the Updated JSON Object Back to XML
-    const newXmlString = create(file2_parsedXml).end({ prettyPrint: true });;
+    const newXmlString = create(file2_parsedXml).end({ prettyPrint: true });
     return newXmlString;
 
 

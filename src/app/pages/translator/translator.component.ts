@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as xmljs from 'xml-js';
+import { create } from 'xmlbuilder2';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var openGoogleTranslator: any;
@@ -9,12 +10,12 @@ declare var openGoogleTranslator: any;
   templateUrl: './translator.component.html',
   styleUrl: './translator.component.css'
 })
-export class TranslatorComponent implements OnInit{
+export class TranslatorComponent implements OnInit {
   fileContent: string | ArrayBuffer | null = null;
 
   modifiedContent: string | ArrayBuffer | null = null;
 
-  supportedLanguages: {name?: string, code: string}[] = [];
+  supportedLanguages: { name?: string, code: string }[] = [];
 
   sourceLangSelected: string | null = null;
   targetLangSelected: string | null = null;
@@ -23,14 +24,14 @@ export class TranslatorComponent implements OnInit{
     removeTargetContentBefore: false
   }
 
-  constructor(private spinner: NgxSpinnerService){
-    
+  constructor(private spinner: NgxSpinnerService) {
+
   }
 
   ngOnInit(): void {
     const supportedLanguages = openGoogleTranslator.supportedLanguages();
 
-    for(const key in supportedLanguages){
+    for (const key in supportedLanguages) {
       this.supportedLanguages.push({
         code: key,
         name: supportedLanguages[key]
@@ -63,12 +64,12 @@ export class TranslatorComponent implements OnInit{
     const sourceLang = this.sourceLangSelected;
     const targetLang = this.targetLangSelected;
 
-    if(!sourceLang){
+    if (!sourceLang) {
       alert('Please select the source language!');
       return;
     }
 
-    if(!targetLang){
+    if (!targetLang) {
       alert('Please select the target language!');
       return;
     }
@@ -76,34 +77,54 @@ export class TranslatorComponent implements OnInit{
     this.spinner.show();
 
     try {
-      const parsedXml = xmljs.xml2js(this.fileContent as string, { compact: true }) as any;
+      const parsedXml = create(this.fileContent as string).toObject() as any;
       const transUnits = parsedXml.xliff.file.body['trans-unit'];
 
-      for (const transUnit of transUnits) {
-        const source = transUnit.source._text;
-        let target = transUnit.target ? transUnit.target._text : null;
-
-        if (source) {
-          if (!target || this.options.removeTargetContentBefore) {
-            transUnit.target = { _text: '' };
-            target = '';
+      const processTransUnit = async (transUnit: any) => {
+        const source = transUnit.source || null;
+      
+        if (!source) return;
+      
+        const initialTarget = transUnit.target || null;
+      
+        if (initialTarget && !this.options.removeTargetContentBefore) return;
+      
+        transUnit.target = JSON.parse(JSON.stringify(source)); // Copiar la estructura del source al target
+        const target = transUnit.target;
+      
+        if (typeof target === 'object' && target !== null) {
+          let insideTarget = target['#'];
+      
+          if (Array.isArray(insideTarget)) {
+            for (let i = 0; i < insideTarget.length; i++) {
+              let targetText = insideTarget[i]['#'];
+      
+              if (targetText) {
+                insideTarget[i]['#'] = await this.translateText([targetText], sourceLang, targetLang); // Asignar la traducción
+              }
+            }
+          } else if (insideTarget) {
+            target['#'] = await this.translateText([insideTarget], sourceLang, targetLang); // Asignar la traducción
           }
-
-          if (target === '') {
-            
-            const translation = await this.translateText([source], sourceLang, targetLang);
-            transUnit.target._text = translation;
-            
-          }
-
+        } else if (transUnit.target) {
+          transUnit.target = await this.translateText([transUnit.target], sourceLang, targetLang); // Asignar la traducción
         }
+      };
+      
+      if (Array.isArray(transUnits)) {
+        for (const transUnit of transUnits) {
+          await processTransUnit(transUnit);
+        }
+      } else {
+        await processTransUnit(transUnits);
       }
-      const modifiedXml = xmljs.js2xml(parsedXml, { compact: true, spaces: 4 });
+
+      const modifiedXml = create(parsedXml).end({ prettyPrint: true });
       this.modifiedContent = modifiedXml;
     } catch (error) {
       console.error('Error processing file:', error);
       alert('Error processing file:');
-    }finally{
+    } finally {
       this.spinner.hide();
     }
   }
@@ -123,22 +144,22 @@ export class TranslatorComponent implements OnInit{
 
     let translation = '';
 
-    try{
+    try {
       await openGoogleTranslator.TranslateLanguageData({
         listOfWordsToTranslate: listOfWords,
         fromLanguage: fromLanguage,
         toLanguage: toLanguage,
-      }).then((data: { original: string, translation: string }[])=>{
+      }).then((data: { original: string, translation: string }[]) => {
         translation = data[0].translation;
       });
-    }catch(e){
+    } catch (e) {
 
     }
 
     return translation;
   }
 
-  
+
 
   downloadFile() {
 
@@ -148,7 +169,7 @@ export class TranslatorComponent implements OnInit{
 
     this.spinner.show();
 
-    try{
+    try {
       const blob = new Blob([data], { type: 'application/xml' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -158,16 +179,16 @@ export class TranslatorComponent implements OnInit{
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
-    }finally{
+    } finally {
       this.spinner.hide();
     }
-    
+
   }
 
-  clearInput(){
+  clearInput() {
     this.fileContent = null;
     this.modifiedContent = null;
   }
 
- 
+
 }

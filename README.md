@@ -14,6 +14,7 @@ Live app: https://web-xliff-tools.vercel.app/
 
 ## Important Third-Party Packages
 - **xml-js**: Converts XML to JSON and vice versa, making it easier to manipulate XML data in JavaScript.
+- **xmlbuilder2**: Converts XML to JSON and vice versa, making it easier to manipulate XML data in JavaScript.
 - **open-google-translator**: A package to translate text using Google Translator's API.
 - **ngx-spinner**: A library for showing loading spinners in Angular applications.
 

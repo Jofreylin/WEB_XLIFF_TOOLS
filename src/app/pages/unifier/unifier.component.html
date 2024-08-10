@@ -1,33 +1,34 @@
 <div class="flex flex-col items-center justify-center">
 
-    <div class="bg-white dark:bg-black rounded-2xl border dark:border-transparent p-6 max-w-3xl w-full">
+    <div class="bg-white dark:bg-[#171717] rounded-2xl border dark:border-transparent p-6 max-w-3xl w-full">
         <h2 class="text-2xl font-semibold mb-2 text-black dark:text-white">Upload a File</h2>
         <p class="text-gray-600  dark:text-white mb-4">Choose the XLF or XLIFF you want to unify.</p>
         <div class="flex items-center">
             <label for="file-upload1" *ngIf="!xmlInput1 || !xmlInput2"
-                class="cursor-pointer me-3 inline-flex items-center px-4 py-2  bg-black text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">
+                class="cursor-pointer me-3 inline-flex items-center px-4 py-2  bg-[#171717] text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">
                 <i class="fa fa-upload mr-2"></i>
                 Choose Source File
                 <input id="file-upload1" type="file" class="hidden" (change)="onFileChange($event,1)">
             </label>
             <label for="file-upload2" *ngIf="!xmlInput2 || !xmlInput1"
-                class="cursor-pointer inline-flex items-center px-4 py-2  bg-black text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">
+                class="cursor-pointer inline-flex items-center px-4 py-2  bg-[#171717] text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">
                 <i class="fa fa-upload mr-2"></i>
                 Choose Target File
                 <input id="file-upload2" type="file" class="hidden" (change)="onFileChange($event,2)">
             </label>
             <button *ngIf="xmlInput1 && xmlInput2" (click)="clearInput()"
-                class="px-4 py-2 me-3 bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm  hover:bg-gray-800 dark:hover:bg-gray-200">
+                class="px-4 py-2 me-3 bg-[#171717]  text-white dark:bg-white dark:text-black rounded-lg shadow-sm  hover:bg-gray-800 dark:hover:bg-gray-200">
                 <i class="fas fa-trash"></i>
                 Clear Inputs
             </button>
             <button *ngIf="xmlInput1 && xmlInput2 && !xmlOutput" (click)="doJob()"
-                class="px-4 py-2  bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">Unify</button>
+                class="px-4 py-2  bg-green-900  text-white  rounded-lg shadow-sm hover:bg-gray-800 "> <i class="fa-solid fa-mortar-pestle mr-2"></i> Unify</button>
             <button *ngIf="xmlOutput" (click)="downloadFile()"
-                class="px-4 py-2  bg-black  text-white dark:bg-white dark:text-black rounded-lg shadow-sm hover:bg-gray-800 dark:hover:bg-gray-200">Download
-                Unification File</button>
+                class="px-4 py-2  bg-green-900  text-white  rounded-lg shadow-sm hover:bg-gray-800 ">
+                <i class="fa-solid fa-file-arrow-down mr-2"></i>
+                Download Unification File</button>
             <a  routerLink="/help"
-                class="ms-6 px-4 py-2 border  dark:border-white bg-white  text-black dark:bg-black dark:text-white rounded-lg shadow-sm hover:bg-gray-200 dark:hover:bg-gray-800">
+                class="ms-6 px-4 py-2 border  dark:border-white bg-white  text-black dark:bg-[#171717] dark:text-white rounded-lg shadow-sm hover:bg-gray-200 dark:hover:bg-gray-800">
                 Need Help?</a>
         </div>
     </div>

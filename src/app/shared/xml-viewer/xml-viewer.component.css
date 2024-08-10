@@ -1,9 +1,7 @@
 pre {
-    white-space: pre-wrap; /* CSS3 */
-    white-space: -moz-pre-wrap; /* Mozilla */
-    white-space: -pre-wrap; /* Opera 4-6 */
-    white-space: -o-pre-wrap; /* Opera 7 */
-    word-wrap: break-word; /* IE */
-    width: 35rem;
-    overflow-y: auto; /* Agrega scroll vertical */
-  }
+    white-space: pre-wrap; /* Ajusta el texto y permite el salto de línea */
+    word-wrap: break-word; /* Permite que las palabras largas se rompan para ajustarse al contenedor */
+    overflow: auto; /* Agrega scroll si es necesario */
+    padding: 1rem; /* Añade espacio interno para mejorar la legibilidad */
+    box-sizing: border-box; /* Incluye el padding en el ancho y alto del elemento */
+}

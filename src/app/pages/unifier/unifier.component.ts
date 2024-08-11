@@ -73,19 +73,21 @@ export class UnifierComponent {
 
           if (unit.source && sourceToTargetMap[JSON.stringify(unit.source)]) {
             unit.target = sourceToTargetMap[JSON.stringify(unit.source)];
-          } else if (unit.source && !sourceToTargetMap[JSON.stringify(unit.source)]) {
-            const source = unit.source;
-            unit.target = source;
-          }
+          } 
+          // else if (unit.source && !sourceToTargetMap[JSON.stringify(unit.source)]) {
+          //   const source = unit.source;
+          //   unit.target = source;
+          // }
 
         });
       } else {
         if (transUnitsTa.source && sourceToTargetMap[JSON.stringify(transUnitsTa.source)]) {
           transUnitsTa.target = sourceToTargetMap[JSON.stringify(transUnitsTa.source)];
-        } else if (transUnitsTa.source && !sourceToTargetMap[JSON.stringify(transUnitsTa.source)]) {
-          const source = transUnitsTa.source;
-          transUnitsTa.target = source;
-        }
+        } 
+        // else if (transUnitsTa.source && !sourceToTargetMap[JSON.stringify(transUnitsTa.source)]) {
+        //   const source = transUnitsTa.source;
+        //   transUnitsTa.target = source;
+        // }
       }
 
     } catch (e) {
